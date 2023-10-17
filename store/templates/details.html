@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}
+{% endblock %}
+
+{% block content %}
+    <!-- Product details section -->
+    <section class="py-5">
+        <div class="container px-4 px-lg-5 mt-5">
+            <div class="row gx-4 gx-lg-5 row-cols-2 justify-content-center">
+                <div class="col-md-6">
+                    <!-- Product image -->
+                    <img class="img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}" />
+                </div>
+                <div class="col-md-6">
+                    <!-- Product details -->
+                    <h2 class="fw-bolder">{{ product.name }}</h2>
+                    <p class="lead">{{ product.description }}</p>
+                    <p class="lead">Price: ${{ product.price }}</p>
+                    
+                    {% if product.stock > 0 %}
+                        <!-- Add to cart button if product is in stock -->
+                        <div class="d-flex">
+                            <button class="btn btn-outline-dark me-2">
+                                <i class="bi bi-cart-plus"></i>
+                                Add to Cart
+                            </button>
+                            <button class="btn btn-dark">
+                                <i class="bi bi-heart"></i>
+                                Add to Wishlist
+                            </button>
+                        </div>
+                    {% else %}
+                        <!-- Out of Stock message if product is out of stock -->
+                        <div class="alert alert-danger mt-3" role="alert">
+                            This product is out of stock.
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
